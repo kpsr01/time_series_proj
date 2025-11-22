@@ -1,0 +1,54 @@
+# Project Configuration
+
+countries: ['DE', 'FR', 'ES']  
+data_path: "data/time_series_60min_singleindex.csv" 
+processed_data_dir: "data"
+outputs_dir: "outputs"
+
+column_mapping:
+  utc_timestamp: "timestamp"
+  DE_load_actual_entsoe_transparency: "load"
+  FR_load_actual_entsoe_transparency: "load"
+  ES_load_actual_entsoe_transparency: "load"
+
+# STL Decomposition 
+seasonality_period: 24
+
+# SARIMA Grid Search Constraints 
+# Order: (p, d, q) x (P, D, Q)s
+sarima_grid:
+  p: [0, 1, 2]
+  d: [0, 1]
+  q: [0, 1, 2]
+  P: [0, 1]
+  D: [0, 1]
+  Q: [0, 1]
+  s: 24
+
+# 3. Forecasting Config 
+split:
+  train_ratio: 0.80
+  dev_ratio: 0.10
+  test_ratio: 0.10
+
+backtest:
+  stride: 24     # 24 hours
+  horizon: 24    # 24 hours
+  warmup: 60     # Days (60 * 24 hours)
+
+# 4. Anomaly Detection 
+anomaly:
+  z_window: 336        # 14 days * 24 hours
+  z_threshold: 3.0     # Flag if |z| >= 3.0
+  min_periods: 168     # 7 days required to calculate z-score
+  silver_label_thresh_high: 3.5
+  silver_label_thresh_low: 2.5
+
+# 5. Live Simulation 
+live:
+  sim_hours: 2000
+  history_start_days: 120
+  adaptation_strategy: "rolling_sarima" 
+  drift_alpha: 0.1
+  drift_percentile: 0.95
+  drift_window: 720 # 30 days * 24h
