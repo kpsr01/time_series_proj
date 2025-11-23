@@ -1,6 +1,6 @@
 # OPSD PowerDesk: Day-Ahead Load Forecasting & Anomaly Detection
 
-## ⚡ Overview
+## Overview
 This project implements a production-grade pipeline for day-ahead electric load forecasting across three European countries: **Germany (DE), France (FR), and Spain (ES)**. 
 
 The system includes:
@@ -85,7 +85,7 @@ The following table shows typical test set performance metrics for SARIMA models
 
 These metrics are saved in `outputs/test_metrics_comparison.csv`and `outputs/lstm_metrics.csv` after running the forecasting pipeline.
 
-## 🧠 Model Architecture Details
+## Model Architecture Details
 
 ### SARIMA (Seasonal ARIMA)
 - **Model Selection**: Grid search over SARIMA orders using AIC/BIC criteria
@@ -121,5 +121,5 @@ These metrics are saved in `outputs/test_metrics_comparison.csv`and `outputs/lst
 - **ML Method**: LightGBM classifier trained on "silver labels" (z-score thresholds: high=3.5, low=2.5)
 - **Features**: Temporal features (hour, day of week, month) + rolling statistics
 
-## ⚙️ Configuration
+## Configuration
 Project settings (SARIMA grids, thresholds, paths) are managed in `config.yaml`.
