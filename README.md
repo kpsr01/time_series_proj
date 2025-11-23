@@ -32,7 +32,7 @@ Run the scripts in the following order to generate all artifacts:
 
 ### Phase 1: Ingestion & Analysis
 1.  `python src/load_opsd.py` - Cleans raw data and saves per-country CSVs.
-2.  `python src/decompose_acf_pacf.py` - Generates STL plots and performs AIC/BIC grid search.
+2.  `python src/decompose_acf_pcf.py` - Generates STL plots and performs AIC/BIC grid search.
 
 ### Phase 2: Core Forecasting (SARIMA)
 3.  `python src/forecast.py` - Runs expanding window backtest (Dev/Test splits).
